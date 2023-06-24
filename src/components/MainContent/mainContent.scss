@@ -6,7 +6,7 @@
     padding-inline: 1rem;
 
     @media screen and (max-width: variables.$tablet) {
-        display: block;
+        flex-direction: column-reverse;
     }
 
     &-sidebar {
