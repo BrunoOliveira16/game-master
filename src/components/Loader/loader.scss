@@ -1,0 +1,25 @@
+@use 'styles/variables';
+
+.loader {
+    margin-top: 2rem;
+
+    &-spin {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+        border: 1rem solid transparent;
+        border-top: 1rem solid variables.$text-second-color;
+        border-radius: 50%;
+        animation: spin 2s linear infinite;
+    }
+
+    p {
+        margin-top: 2rem;
+        font-size: variables.$medium-font-size;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

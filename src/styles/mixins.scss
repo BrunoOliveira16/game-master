@@ -1,0 +1,18 @@
+@mixin display-between($position, $align) {
+    display: flex;
+    flex-direction: $position;
+    justify-content: space-between;
+    align-items: $align;
+}
+
+@mixin flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@mixin display-grid($columns, $sizeColumns, $columnGap, $rowGap) {
+    display: grid;
+    grid-template-columns: repeat($columns, $sizeColumns);
+    column-gap: $columnGap;
+    row-gap: $rowGap;
+}

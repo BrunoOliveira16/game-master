@@ -1,0 +1,48 @@
+@use 'variables';
+
+/* -------------- Reset CSS -------------- */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: variables.$primary-font-family;
+}
+
+body {
+    background-color: variables.$bg-primary-color;
+    color: variables.$text-primary-color;
+    min-width: 360px;
+}
+
+a,
+li,
+button {
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* ------------- Classes Reutilizáveis -------------- */
+
+.container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.text-title {
+    text-transform: uppercase;
+    margin-block: 1rem;
+}
+
+.text-center,
+.text-center-sm {
+    text-align: center;
+}

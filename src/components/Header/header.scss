@@ -1,0 +1,35 @@
+@use 'styles/variables';
+@use 'styles/mixins';
+
+header {
+    background-color: variables.$bg-second-color;
+
+    .container {
+        @include mixins.display-between(row, center);
+        padding: 1rem;
+
+        @media screen and (max-width: variables.$mobile) {
+            display: block;
+
+            .header-brand {
+                margin-bottom: 1rem;
+                justify-content: center !important;
+            }
+        }
+
+        .header-brand {
+            @include mixins.display-between(row, center);
+            font-style: italic;
+
+            span {
+                color: variables.$text-second-color;
+            }
+
+            img {
+                width: 2.5rem;
+                height: 2.5rem;
+                margin-right: 1rem;
+            }
+        }
+    }
+}

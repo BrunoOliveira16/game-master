@@ -1,0 +1,18 @@
+@use 'styles/variables';
+@use 'styles/mixins';
+
+.wrapper {
+    @include mixins.display-between(row, center);
+    padding: .5rem;
+    background-color: variables.$bg-primary-color;
+}
+
+.btn-search {
+    width: 100%;
+    margin-right: 1rem;
+    padding: 5px;
+    font-size: variables.$normal-font-size;
+    color: variables.$text-primary-color;
+    background-color: transparent;
+    border: variables.$bg-primary-color;
+}

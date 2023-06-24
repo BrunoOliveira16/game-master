@@ -1,0 +1,45 @@
+@use 'styles/variables';
+@use 'styles/mixins';
+
+.main {
+    @include mixins.display-between(row, start);
+    padding-inline: 1rem;
+
+    @media screen and (max-width: variables.$tablet) {
+        display: block;
+    }
+
+    &-sidebar {
+        width: 20%;
+
+        @media screen and (max-width: variables.$tablet) {
+            width: 90%;
+            display: block;
+            margin: 0 auto;
+        }
+    }
+
+    &-content {
+        width: 75%;
+        display: block;
+
+        @media screen and (max-width: variables.$tablet) {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        &-cards {
+            width: 100%;
+            @include mixins.display-grid(3, 1fr, 1%, 2rem);
+    
+            @media screen and (max-width: variables.$tablet) {
+                @include mixins.display-grid(2, 1fr, 1%, 2rem);
+            }
+    
+            @media screen and (max-width: variables.$mobile) {
+                display: block;
+            }
+        }
+    }
+}
+
