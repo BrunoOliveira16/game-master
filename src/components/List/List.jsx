@@ -3,15 +3,19 @@ import React, { useState } from 'react';
 // Styles
 import './list.scss';
 
-const List = ({ genres, onGenreClick }) => {
+// Context
+import { useAppContext } from '../../context/AppContext';
+
+const List = () => {
     const [active, setActive] = useState('all');
+    const { genres, setSelectedGenre } = useAppContext();
 
     return (
         <nav>
             <ul className='list'>
                 <li 
                     onClick={() => {
-                        onGenreClick(null)
+                        setSelectedGenre(null)
                         setActive('all')
                     }} 
                     className={active === 'all' ? 'list-item active-work' : 'list-item'}
@@ -22,7 +26,7 @@ const List = ({ genres, onGenreClick }) => {
                     <li 
                         key={genre} 
                         onClick={() => {
-                            onGenreClick(genre);
+                            setSelectedGenre(genre)
                             setActive(genre)
                         }} 
                         className={active === genre ? 'list-item active-work' : 'list-item'}

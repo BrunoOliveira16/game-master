@@ -4,10 +4,15 @@ import React from 'react';
 import './header.scss';
 import Logo from 'assets/logo.png';
 
+// Context
+import { useAppContext } from 'context/AppContext';
+
 // Components
 import Search from 'components/Search/Search';
 
-const Header = ({ onSearch }) => {
+const Header = () => {
+  const { setSearch } = useAppContext();
+
   return (
     <header>
         <div className="container text-center-sm">
@@ -15,7 +20,7 @@ const Header = ({ onSearch }) => {
             <img src={Logo} alt="imagem de um jostick de video game"/>
             <h1>Games<span>Master</span></h1>
           </div>
-          <Search onSearch={onSearch} />
+          <Search onSearch={setSearch} />
         </div>
     </header>
   );
