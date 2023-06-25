@@ -4,7 +4,7 @@ import React from 'react';
 import './cardError.scss';
 import Error from 'assets/error.jpg';
 
-const CardError = ({error}) => {
+const CardError = ({ error }) => {
   return (
     <div className='card-error text-center'>
         <img src={Error} alt="Imagem de erro"/>
