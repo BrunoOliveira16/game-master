@@ -18,7 +18,9 @@ const useFetchData = () => {
             setLoading(false)
         })
     }, []);
-  
+    
+    console.log(data)
+
     return { data, loading, error }
 }
 

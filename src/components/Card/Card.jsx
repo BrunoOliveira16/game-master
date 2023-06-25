@@ -4,6 +4,7 @@ import React from 'react';
 import './card.scss';
 
 const Card = ({ title, thumbnailUrl }) => {
+  
   return (
     <div className='card'>
         <img src={thumbnailUrl} alt={title} className='card-img'/>

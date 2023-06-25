@@ -38,7 +38,7 @@ const MainContent = () => {
                         data.filter((item) => (
                                 (!selectedGenre || item.genre === selectedGenre) && 
                                 (!search || item.title.toLowerCase().includes(search.toLowerCase()))
-                            )).map(item => (
+                            )).map((item) => (
                                 <Card
                                     key={item.id}
                                     title={item.title}
