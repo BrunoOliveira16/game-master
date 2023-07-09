@@ -7,6 +7,7 @@ import { useAppContext } from 'context/useAppContext';
 
 // Components
 import Search from 'components/Search/Search';
+import Navbar from 'components/Navbar/Navbar';
 
 const Header = () => {
   const { setSearch } = useAppContext();
@@ -18,6 +19,7 @@ const Header = () => {
             <img src={Logo} alt="imagem de um jostick de video game"/>
             <h1>Games<span>Master</span></h1>
           </div>
+          <Navbar />
           <Search onSearch={setSearch} />
         </div>
     </header>
