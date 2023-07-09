@@ -8,7 +8,6 @@ import { useAppContext } from 'context/AppContext';
 
 // Custom Hooks
 import useFetchData from "hooks/useFetchData";
-import useFavorites from "hooks/useFavorites";
 
 // Components
 import Card from 'components/Card/Card';
@@ -19,15 +18,12 @@ import Loader from "components/Loader/Loader";
 const MainContent = () => {
     const { data, loading, error } = useFetchData();
     const { search, selectedGenre, setGenres } = useAppContext();
-    const { favorites, handleAddFavorite, handleRemoveFavorite }  = useFavorites();
 
     useEffect(() => {
         if(data) {
             setGenres([...new Set(data?.map((item) => item.genre))]);
         }  
     }, [data, setGenres]);
-
-    console.log(favorites)
 
     return (
         <main className='main container'>
@@ -46,10 +42,8 @@ const MainContent = () => {
                                 <Card
                                     key={item.id}
                                     title={item.title}
-                                    thumbnailUrl={item.thumbnail}
-                                    onAddFavorite={() => handleAddFavorite(item)}
-                                    onRemoveFavorite={() => handleRemoveFavorite(item)}
-                                    isFavorite={favorites.includes(item)}
+                                    thumbnailUrl={item.thumbnail} 
+                                    item = {item}                          
                                 />
                             )
                         )

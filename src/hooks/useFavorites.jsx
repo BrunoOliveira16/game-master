@@ -1,7 +1,4 @@
-import { useState } from "react";
-
-const useFavorites = () => {
-    const [ favorites, setFavorites ] = useState([]);
+const useFavorites = ( setFavorites) => {
 
     const handleAddFavorite = (item) => {
         setFavorites((prevFav) => [...prevFav, item]);
@@ -12,7 +9,6 @@ const useFavorites = () => {
     };
 
     return {
-        favorites,
         handleAddFavorite,
         handleRemoveFavorite
     };

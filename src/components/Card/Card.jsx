@@ -1,20 +1,32 @@
 import { useState } from 'react';
 import { BsFillHeartFill }  from 'react-icons/bs';
 
+// Custom Hooks
+import useFavorites from "hooks/useFavorites";
+
+// Context
+import { useAppContext } from 'context/AppContext';
+
 // Styles
 import './card.scss';
 
-const Card = ({ title, thumbnailUrl, onAddFavorite, onRemoveFavorite, isFavorite: isFavorited }) => {
+const Card = ({ title, thumbnailUrl, item }) => {
+  const { favorites, setFavorites } = useAppContext();
+  const isFavorited = favorites.includes(item);
   const [ isFavorite, setIsFavorite ] = useState(isFavorited);
+  const { handleAddFavorite, handleRemoveFavorite }  = useFavorites(setFavorites);
+
 
   const handleFavoritClick = () => {
     setIsFavorite(!isFavorite)
     if(isFavorite) {
-      onRemoveFavorite();
+      handleRemoveFavorite(item);
     } else {
-      onAddFavorite();
+      handleAddFavorite(item);
     }
   }
+
+  console.log(favorites)
 
   return (
     <div className='card'>
@@ -22,7 +34,7 @@ const Card = ({ title, thumbnailUrl, onAddFavorite, onRemoveFavorite, isFavorite
         <div className='card-title'>
           <h2 className='card-title--name'>{title}</h2>
           <BsFillHeartFill 
-            onClick={handleFavoritClick}
+            onClick={ handleFavoritClick }
             className={isFavorite ? 'isFavorite' : ''}
           />
         </div>
