@@ -46,3 +46,7 @@ a {
 .text-center-sm {
     text-align: center;
 }
+
+.isFavorite {
+    color: variables.$favorite-color;
+}

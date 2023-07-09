@@ -30,9 +30,16 @@
         height: 200px;
     }
 
-    &-name {
+    &-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-inline: 1rem;
+
+        &--name {
         font-size: variables.$title-font-size;
         margin-block: .5rem;
         padding-left: .5rem;
+        }
     }
 }

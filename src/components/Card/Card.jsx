@@ -1,14 +1,31 @@
-import React from 'react';
+import { useState } from 'react';
+import { BsFillHeartFill }  from 'react-icons/bs';
 
 // Styles
 import './card.scss';
 
-const Card = ({ title, thumbnailUrl }) => {
-  
+const Card = ({ title, thumbnailUrl, onAddFavorite, onRemoveFavorite, isFavorite: isFavorited }) => {
+  const [ isFavorite, setIsFavorite ] = useState(isFavorited);
+
+  const handleFavoritClick = () => {
+    setIsFavorite(!isFavorite)
+    if(isFavorite) {
+      onRemoveFavorite();
+    } else {
+      onAddFavorite();
+    }
+  }
+
   return (
     <div className='card'>
         <img src={thumbnailUrl} alt={title} className='card-img'/>
-        <h2 className='card-name'>{title}</h2>
+        <div className='card-title'>
+          <h2 className='card-title--name'>{title}</h2>
+          <BsFillHeartFill 
+            onClick={handleFavoritClick}
+            className={isFavorite ? 'isFavorite' : ''}
+          />
+        </div>
     </div>
   );
 };
