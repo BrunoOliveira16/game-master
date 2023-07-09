@@ -7,6 +7,7 @@ export const AppProvider = ({ children }) => {
     const [genres, setGenres] = useState([]);
     const [selectedGenre, setSelectedGenre] = useState(null);
     const [ favorites, setFavorites ] = useState([]);
+    const [ ratings, setRatings ] = useState({});
 
     const value = {
         search,
@@ -16,7 +17,9 @@ export const AppProvider = ({ children }) => {
         genres,
         setGenres,
         favorites,
-        setFavorites
+        setFavorites,
+        ratings,
+        setRatings
     };
 
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { BsFillHeartFill }  from 'react-icons/bs';
+import { BsFillHeartFill, BsStarFill }  from 'react-icons/bs';
 
 // Custom Hooks
-import useFavorites from "hooks/useFavorites";
+import useFavorites from 'hooks/useFavorites';
+import useRating from 'hooks/useRating';
 
 // Context
 import { useAppContext } from 'context/useAppContext';
@@ -15,7 +16,7 @@ const Card = ({ title, thumbnailUrl, item }) => {
   const isFavorited = favorites.includes(item);
   const [ isFavorite, setIsFavorite ] = useState(isFavorited);
   const { handleAddFavorite, handleRemoveFavorite }  = useFavorites(setFavorites);
-
+  const { rating, handleRate } = useRating(item);
 
   const handleFavoritClick = () => {
     setIsFavorite(!isFavorite)
@@ -26,18 +27,31 @@ const Card = ({ title, thumbnailUrl, item }) => {
     }
   }
 
-  console.log(favorites)
+  //console.log(favorites)
 
   return (
     <div className='card'>
-        <img src={thumbnailUrl} alt={title} className='card-img'/>
-        <div className='card-title'>
-          <h2 className='card-title--name'>{title}</h2>
+      <div className='card-wrapper'>
+        <img src={thumbnailUrl} alt={title} className='card-wrapper-img'/>
+      </div> 
+      <div className='card-content'>
+        <h2 className='card-content-title'>{title}</h2>
+        <div className='card-content-rating'>
           <BsFillHeartFill 
             onClick={ handleFavoritClick }
             className={isFavorite ? 'isFavorite' : ''}
           />
+          <div>
+            {[1, 2, 3, 4].map((star) => (
+              <BsStarFill 
+                key={star}
+                onClick={() => handleRate(star)}
+                className={rating >= star ? 'isRated' : ''}
+              />
+            ))}
+          </div>
         </div>
+      </div>
     </div>
   );
 };
