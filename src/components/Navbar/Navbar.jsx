@@ -9,7 +9,10 @@ const Navbar = () => {
                 <NavLink id='home' to='/'>Inicio</NavLink>
             </li>
             <li className='navbar-item'>
-                <NavLink id='auth' to='/auth'>Login</NavLink>
+                <NavLink id='login' to='/auth/login'>Login</NavLink>
+            </li>
+            <li className='navbar-item'>
+                <NavLink id='register' to='/auth/register'>Cadastro</NavLink>
             </li>
         </ul>
     </nav>
