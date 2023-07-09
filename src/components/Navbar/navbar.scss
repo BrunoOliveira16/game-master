@@ -1,0 +1,26 @@
+@use 'styles/variables';
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &-item {
+        font-size: variables.$medium-font-size;
+
+        a {
+            color: variables.$text-primary-color;
+            transition: all .5s;
+
+            &:hover {
+                color: variables.$text-second-color;
+            }
+        }
+    }
+
+    #home.active,
+    #login.active,
+    #register.active {
+        color: variables.$text-second-color;
+    }
+}
