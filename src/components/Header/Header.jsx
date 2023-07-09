@@ -1,11 +1,9 @@
-import React from 'react';
-
 // Styles and Assets
 import './header.scss';
 import Logo from 'assets/logo.png';
 
 // Context
-import { useAppContext } from 'context/AppContext';
+import { useAppContext } from 'context/useAppContext';
 
 // Components
 import Search from 'components/Search/Search';

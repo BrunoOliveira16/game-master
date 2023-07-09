@@ -1,5 +1,3 @@
-import React, { useState }  from 'react';
-
 // Context
 import { AppProvider } from './context/AppContext';
 
@@ -14,6 +12,6 @@ function App() {
         <MainContent/>
     </AppProvider>
   );
-};
+}
 
 export default App;

@@ -1,5 +1,3 @@
-import React from 'react';
-
 //Styles and Assets
 import './cardError.scss';
 import Error from 'assets/error.jpg';

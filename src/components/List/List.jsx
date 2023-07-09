@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 // Styles
 import './list.scss';
 
 // Context
-import { useAppContext } from '../../context/AppContext';
+import { useAppContext } from 'context/useAppContext';
 
 const List = () => {
     const [active, setActive] = useState('all');

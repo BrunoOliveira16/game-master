@@ -5,7 +5,7 @@ import { BsFillHeartFill }  from 'react-icons/bs';
 import useFavorites from "hooks/useFavorites";
 
 // Context
-import { useAppContext } from 'context/AppContext';
+import { useAppContext } from 'context/useAppContext';
 
 // Styles
 import './card.scss';

@@ -1,7 +1,5 @@
-import React from 'react';
-
 // Context
-import { useAppContext } from 'context/AppContext';
+import { useAppContext } from 'context/useAppContext';
 
 // Component
 import List from 'components/List/List';

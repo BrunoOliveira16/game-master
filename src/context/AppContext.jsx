@@ -1,6 +1,6 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useState } from 'react';
 
-const AppContext = createContext();
+export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
     const [search, setSearch] = useState('');
@@ -17,9 +17,7 @@ export const AppProvider = ({ children }) => {
         setGenres,
         favorites,
         setFavorites
-    }
+    };
 
-    return <AppContext.Provider value={value}>{children}</AppContext.Provider>
-}
-
-export const useAppContext = () => useContext(AppContext)
+    return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+};

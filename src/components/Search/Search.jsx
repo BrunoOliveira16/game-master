@@ -1,4 +1,3 @@
-import React from 'react';
 import { BsSearch } from 'react-icons/bs';
 
 // Styles
@@ -13,7 +12,7 @@ const Search = ({ onSearch }) => {
         <div className='wrapper'>
             <input 
                 type='text' 
-                onChange={handleSearchChange} 
+                onChange={ handleSearchChange } 
                 className='btn-search'
             />
             <BsSearch />

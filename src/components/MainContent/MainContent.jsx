@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import './mainContent.scss';
 
 // Context
-import { useAppContext } from 'context/AppContext';
+import { useAppContext } from 'context/useAppContext';
 
 // Custom Hooks
 import useFetchData from "hooks/useFetchData";
