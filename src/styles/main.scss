@@ -16,7 +16,8 @@ body {
 
 a,
 li,
-button {
+button,
+svg {
     cursor: pointer;
 }
 
@@ -55,11 +56,23 @@ a {
     color: variables.$rating-color;
 }
 
+.error {
+    color: variables.$favorite-color;
+}
+
 /* ------------- Forms styles -------------- */
 
 form {
     max-width: 40%;
     margin: 2rem auto;
+
+    @media screen and (max-width: variables.$tablet) {
+        max-width: 60%;
+    }
+
+    @media screen and (max-width: variables.$mobile) {
+        max-width: 90%;
+    }
 
     label {
         display: flex;

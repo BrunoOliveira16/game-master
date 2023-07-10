@@ -1,17 +1,41 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
+import { useAuthentication } from "hooks/useAuthentication";
 
 const Register = () => {
-  const [ name, setName ] = useState('');
+  const [ displayName, setDisplayName ] = useState('');
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
+  const [ confirmPassword, setConfirmPassword ] = useState('');
   const navigate = useNavigate();
+  const [ error, setError ] = useState('');
+  const { createUser, error: authError, loading } = useAuthentication();
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    
-    navigate('/');
-  }
+    setError('');
+
+    const user = {
+      displayName,
+      email,
+      password
+    }
+
+    if(password !== confirmPassword) {
+      setError('As senhas precisam ser iguais');
+      return
+    }
+    const sucess = await createUser(user)
+    if(sucess) {
+      navigate('/auth/login');
+    }
+  };
+
+  useEffect(() => {
+    if(authError) {
+      setError(authError);
+    }
+  }, [authError])
 
   return (
     <div>
@@ -21,8 +45,9 @@ const Register = () => {
             <input 
               type='text'
               id='name'
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={displayName}
+              onChange={(e) => setDisplayName(e.target.value)}
+              required
             />
         <label htmlFor='email'>Email</label>
           <input 
@@ -30,6 +55,7 @@ const Register = () => {
             id='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <label htmlFor='password'>Senha</label>
           <input 
@@ -37,8 +63,20 @@ const Register = () => {
             id='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
-          <button type='submit'>Entrar</button>
+          <label htmlFor='confirmPassword'>Confirme a senha</label>
+          <input 
+            type='password'
+            id='confirmPassword'
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+          {!loading &&  <button type='submit'>Entrar</button>}
+          {loading &&  <button disabled>Aguarde...</button>}
+          
+          {error && <p className='error text-center'>{error}</p>}
       </form>
     </div>
   )

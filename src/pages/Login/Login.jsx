@@ -6,10 +6,11 @@ const Login = () => {
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
   const navigate = useNavigate();
+  const [ error, setError ] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
-    
+    setError('');
     navigate('/');
   }
 
@@ -23,6 +24,7 @@ const Login = () => {
           id='email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <label htmlFor='password'>Senha</label>
         <input 
@@ -30,8 +32,10 @@ const Login = () => {
           id='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
         <button type='submit'>Entrar</button>
+        {error && <p className='error text-center'>{error}</p>}
       </form>
       <p className='text-center'>Não possui uma conta? <NavLink className='nav-link' id='register' to='/auth/register'>Registre-se agora</NavLink></p>
     </div>
