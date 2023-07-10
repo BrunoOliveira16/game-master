@@ -1,0 +1,13 @@
+@use 'styles/variables';
+
+.dash {
+
+    h2 {
+        margin-block: 2rem;
+        font-size: variables.$big-font-size;
+
+        span {
+            color: variables.$text-second-color;
+        }
+    }
+}

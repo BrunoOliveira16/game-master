@@ -1,4 +1,4 @@
-import { db } from '../firebase/config';
+import { app } from '../firebase/config';
 
 import {
     getAuth,
@@ -44,8 +44,6 @@ export const useAuthentication = () => {
             return user;
 
         } catch (error) {
-            console.log(error.message);
-            console.log(typeof error.message);
             let systemErrorMessage;
 
             if(error.message.includes("weak-password")) {
@@ -61,6 +59,40 @@ export const useAuthentication = () => {
             return false
         }
     };
+
+    // Logout do usuário
+    const logout = () => {
+        checkIfIsCancelled();
+        signOut(auth);
+    }
+
+    // Login do usuário
+    const login = async (data) => {
+        checkIfIsCancelled();
+        setLoading(true);
+        setError(false);
+
+        try {
+            await signInWithEmailAndPassword(auth, data.email, data.password);
+            setLoading(false);
+            return true;
+
+        } catch(error) {
+            let systemErrorMessage;
+
+            if(error.message.includes("user-not-found")) {
+                systemErrorMessage = "Usuario não encontrado"
+            } else if(error.message.includes("wrong-password")) {
+                systemErrorMessage = "Senha incorreta, tente novamente"
+            } else {
+                systemErrorMessage = "Ocorreu um erro, por favor tente mais tarde.";
+            }
+
+            setLoading(false);
+            setError(systemErrorMessage);
+            return false
+        }
+    }
     
     useEffect(() => {
         return () => setCancelled(true);
@@ -70,6 +102,8 @@ export const useAuthentication = () => {
         auth, 
         createUser, 
         error, 
-        loading
+        loading,
+        logout,
+        login
     };
 };

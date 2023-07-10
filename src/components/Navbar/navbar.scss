@@ -6,9 +6,10 @@
     gap: 1rem;
 
     &-item {
+        display: flex;
         font-size: variables.$medium-font-size;
 
-        a {
+        a, svg {
             color: variables.$text-primary-color;
             transition: all .5s;
 
@@ -20,7 +21,8 @@
 
     #home.active,
     #login.active,
-    #register.active {
+    #register.active,
+    #dashboard.active {
         color: variables.$text-second-color;
     }
 }

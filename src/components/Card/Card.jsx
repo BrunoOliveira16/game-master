@@ -18,6 +18,7 @@ const Card = ({ title, thumbnailUrl, item }) => {
   const { handleAddFavorite, handleRemoveFavorite }  = useFavorites(setFavorites);
   const { rating, handleRate } = useRating(item);
 
+
   const handleFavoritClick = () => {
     setIsFavorite(!isFavorite)
     if(isFavorite) {
