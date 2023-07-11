@@ -43,13 +43,19 @@
 
         &-title {
             font-size: variables.$title-font-size;
-            margin-bottom: .8rem;
+        }
+
+        &-dev {
+            span {
+                color: variables.$text-second-color;
+            }
         }
 
         &-rating {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin-top: .8rem;
         }
     }
 }

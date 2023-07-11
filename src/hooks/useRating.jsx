@@ -1,36 +1,67 @@
+import { db } from '../firebase/config';
+import { addDoc, collection, deleteDoc, query, where, getDocs, updateDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { useAuthentication } from 'hooks/useAuthentication';
 import { useAppContext } from 'context/useAppContext'
 
-const useRating = (item) => {
+const useRating = () => {
     const navigate = useNavigate();
     const { auth } = useAuthentication();
     const user = auth.currentUser;
-    const { ratings, setRatings } = useAppContext();
-    const rating = ratings[item.id] || 0;
+    const { setRatings } = useAppContext();
 
-    const handleRate = (newRating) => {
+    const handleAddRatings = async (item) => {
         if (!user) {
             alert('Você precisa fazer login para avaliar este item');
             navigate('/auth/login');
             return;
         }
 
-        if(newRating === rating) {
-            setRatings((prevRat) => {
-                const newRatings = { ...prevRat };
-                delete newRatings[item.id];
-                return newRatings;
-            });
-        } else {
-            setRatings((prevRat) => ({
-                ...prevRat,
-                [item.id]: newRating,
-            }));
+        try {
+            const ratingsRef = collection(db, 'users', user.uid, 'ratings');
+            const q = query(ratingsRef, where('id', '==', item.id));
+            const querySnapshot = await getDocs(q);
+            if(querySnapshot.empty){
+                await addDoc(ratingsRef, item);
+            } else {
+                querySnapshot.forEach((doc) => {
+                    updateDoc(doc.ref, item);
+                });
+            }
+            setRatings((prevRat) => ({ ...prevRat, [item.id]: item}));
+        } catch(error) {
+            console.log(error);
         }
     };
 
-    return { rating, handleRate };
+    const handleRemoveRatings = async(item) => {
+        if (!user) {
+            alert('Você precisa fazer login para avaliar este item');
+            navigate('/auth/login');
+            return;
+        }
+
+        try {
+            const ratingsRef = collection(db, 'users', user.uid, 'ratings');
+            const q = query(ratingsRef, where('id', '==', item.id));
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+                deleteDoc(doc.ref);
+            });
+            setRatings((prev) => {
+                const newRatings = { ...prev };
+                delete newRatings[item.id];
+                return newRatings;
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    return { 
+        handleAddRatings, 
+        handleRemoveRatings 
+    };
 };
 
 export default useRating;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { BsFillHeartFill, BsStarFill }  from 'react-icons/bs';
 
 // Custom Hooks
@@ -7,17 +7,28 @@ import useRating from 'hooks/useRating';
 
 // Context
 import { useAppContext } from 'context/useAppContext';
+import { AuthContext } from 'context/AuthContext';
 
 // Styles
 import './card.scss';
 
 const Card = ({ title, thumbnailUrl, item, developer }) => {
-  const { favorites, setFavorites } = useAppContext();
+  const { user } = useContext(AuthContext)
+  const { favorites, setFavorites, ratings } = useAppContext();
+  
   const isFavorited = favorites.some((favorite) => favorite.id === item.id);
   const [ isFavorite, setIsFavorite ] = useState(isFavorited);
   const { handleAddFavorite, handleRemoveFavorite }  = useFavorites(setFavorites);
-  const { rating, handleRate } = useRating(item);
+  
+  const [ isRating, setIsRating ] = useState(ratings[item.id] || 0);
+  const { handleAddRatings, handleRemoveRatings } = useRating(item);
 
+  useEffect(() => {
+    if(!user) {
+      setIsFavorite(false);
+      setIsRating(0);
+    }
+  }, [user])
 
   const handleFavoritClick = () => {
     setIsFavorite(!isFavorite)
@@ -28,6 +39,16 @@ const Card = ({ title, thumbnailUrl, item, developer }) => {
     }
   }
 
+  const handleRatingClick = (newRating) => {
+    if(isRating === newRating) {
+      handleRemoveRatings(item);
+      setIsRating(0)
+    } else {
+      handleAddRatings({...item, rating: newRating});
+      setIsRating(newRating)
+    }
+  }
+
   return (
     <div className='card'>
       <div className='card-wrapper'>
@@ -35,7 +56,7 @@ const Card = ({ title, thumbnailUrl, item, developer }) => {
       </div> 
       <div className='card-content'>
         <h2 className='card-content-title'>{title}</h2>
-        <p>{developer}</p>
+        <p className='card-content-dev'>Developer: <span>{developer}</span></p>
         <div className='card-content-rating'>
           <BsFillHeartFill 
             onClick={ handleFavoritClick }
@@ -45,8 +66,8 @@ const Card = ({ title, thumbnailUrl, item, developer }) => {
             {[1, 2, 3, 4].map((star) => (
               <BsStarFill 
                 key={star}
-                onClick={() => handleRate(star)}
-                className={rating >= star ? 'isRated' : ''}
+                onClick={ () => handleRatingClick(star) }
+                className={isRating >= star ? 'isRated' : ''}
               />
             ))}
           </div>
