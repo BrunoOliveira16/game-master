@@ -1,9 +1,16 @@
 import { useState } from 'react';
 import { BsStarFill } from 'react-icons/bs';
+import { useAuthentication } from 'hooks/useAuthentication';
 
 const RatingFilter = ({ setRatingFilter, setSortOrder }) => {
   const [rating, setRating] = useState(0);
   const [sortOrder, setSortOrderState] = useState('desc');
+  const { auth } = useAuthentication();
+  const user = auth.currentUser;
+
+  if (!user) {
+        return null;
+  }
 
   // Filtro especifico por classificação
   const handleRatingClick = (newRating) => {
