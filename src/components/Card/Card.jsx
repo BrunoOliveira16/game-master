@@ -11,9 +11,9 @@ import { useAppContext } from 'context/useAppContext';
 // Styles
 import './card.scss';
 
-const Card = ({ title, thumbnailUrl, item }) => {
+const Card = ({ title, thumbnailUrl, item, developer }) => {
   const { favorites, setFavorites } = useAppContext();
-  const isFavorited = favorites.includes(item);
+  const isFavorited = favorites.some((favorite) => favorite.id === item.id);
   const [ isFavorite, setIsFavorite ] = useState(isFavorited);
   const { handleAddFavorite, handleRemoveFavorite }  = useFavorites(setFavorites);
   const { rating, handleRate } = useRating(item);
@@ -28,8 +28,6 @@ const Card = ({ title, thumbnailUrl, item }) => {
     }
   }
 
-  //console.log(favorites)
-
   return (
     <div className='card'>
       <div className='card-wrapper'>
@@ -37,6 +35,7 @@ const Card = ({ title, thumbnailUrl, item }) => {
       </div> 
       <div className='card-content'>
         <h2 className='card-content-title'>{title}</h2>
+        <p>{developer}</p>
         <div className='card-content-rating'>
           <BsFillHeartFill 
             onClick={ handleFavoritClick }

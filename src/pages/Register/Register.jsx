@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useAuthentication } from "hooks/useAuthentication";
+import './register.scss';
 
 const Register = () => {
   const [ displayName, setDisplayName ] = useState('');
@@ -38,7 +39,7 @@ const Register = () => {
   }, [authError])
 
   return (
-    <div>
+    <div className='register'>
       <h2 className='text-center text-title'>Faça aqui seu cadastro</h2>
       <form onSubmit={handleRegister}>
         <label htmlFor='name'>Nome</label>
@@ -75,9 +76,9 @@ const Register = () => {
           />
           {!loading &&  <button type='submit'>Entrar</button>}
           {loading &&  <button disabled>Aguarde...</button>}
-          
           {error && <p className='error text-center'>{error}</p>}
       </form>
+      <p className='text-center'>Já possui uma conta? <NavLink className='nav-link' id='login' to='/auth/login'>clique aqui</NavLink></p>
     </div>
   )
 };

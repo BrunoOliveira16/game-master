@@ -61,9 +61,10 @@ export const useAuthentication = () => {
     };
 
     // Logout do usuário
-    const logout = () => {
+    const logout = async (setFavorites) => {
         checkIfIsCancelled();
-        signOut(auth);
+        await signOut(auth);
+        setFavorites([]);
     }
 
     // Login do usuário

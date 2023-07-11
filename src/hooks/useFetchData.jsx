@@ -19,7 +19,6 @@ const useFetchData = () => {
         })
     }, []);
     
-    //console.log(data)
 
     return { data, loading, error }
 }

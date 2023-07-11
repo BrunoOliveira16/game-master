@@ -32,7 +32,7 @@ const Login = () => {
   }, [authError]);
 
   return (
-    <div>
+    <div className='login'>
       <h2 className='text-center text-title'>Faça o Login para poder utilizar o sistema.</h2>
       <form onSubmit={handleLogin}>
         <label htmlFor='email'>Email</label>

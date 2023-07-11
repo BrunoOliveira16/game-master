@@ -1,5 +1,11 @@
 @use 'styles/variables';
 
+.login {
+    h2 {
+        margin-block: 2rem;
+    }
+}
+
 .nav-link {
     color: variables.$text-second-color;
 }

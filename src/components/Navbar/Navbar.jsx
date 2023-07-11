@@ -1,12 +1,20 @@
 import { NavLink } from 'react-router-dom';
 import { ImExit } from 'react-icons/im';
-import './navbar.scss';
+//Custom Hooks
 import { useAuthentication } from 'hooks/useAuthentication';
 import { useAuthContext } from 'context/useAuthContext';
+import { useAppContext } from 'context/useAppContext';
+//Styles
+import './navbar.scss';
 
 const Navbar = () => {
     const { user } = useAuthContext();
     const { logout } = useAuthentication();
+    const { setFavorites } = useAppContext();
+
+    const handleLogout = async () => {
+        await logout(setFavorites);
+      };
 
     return (
         <nav>
@@ -19,9 +27,6 @@ const Navbar = () => {
                         <li className='navbar-item'>
                             <NavLink id='login' to='/auth/login'>Login</NavLink>
                         </li>
-                        <li className='navbar-item'>
-                            <NavLink id='register' to='/auth/register'>Cadastro</NavLink>
-                        </li>
                     </>
                 )}
                 {user && (
@@ -30,7 +35,7 @@ const Navbar = () => {
                             <NavLink id='dashboard' to='/dashboard'>Dashboard</NavLink>
                         </li>
                         <li className='navbar-item'>
-                            <ImExit onClick={logout} title='logout'/>
+                            <ImExit onClick={handleLogout} title='logout'/>
                         </li>
                     </>
                 )}
