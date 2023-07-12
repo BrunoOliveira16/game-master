@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { BsFillHeartFill, BsStarFill }  from 'react-icons/bs';
-
+import { motion } from 'framer-motion';
 // Custom Hooks
 import useFavorites from 'hooks/useFavorites';
 import useRating from 'hooks/useRating';
@@ -50,7 +50,14 @@ const Card = ({ title, thumbnailUrl, item, developer }) => {
   }
 
   return (
-    <div className='card'>
+    <motion.div
+      layout 
+      animate={{ opacity: 1.5, scale: 1 }} 
+      initial={{ opacity: 1, scale: 0.8 }} 
+      exit={{ opacity: 1, scale: 0.8 }}
+      transition={{duration: .6}} 
+      className='card'
+    >
       <div className='card-wrapper'>
         <img src={thumbnailUrl} alt={title} className='card-wrapper-img'/>
       </div> 
@@ -73,7 +80,7 @@ const Card = ({ title, thumbnailUrl, item, developer }) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
