@@ -3,7 +3,7 @@ import { collection, addDoc, deleteDoc, query, where, getDocs } from 'firebase/f
 import { useNavigate } from 'react-router-dom';
 import { useAuthentication } from 'hooks/useAuthentication';
 
-const useFavorites = ( setFavorites) => {
+const useFavorites = (setFavorites) => {
     const navigate = useNavigate();
     const { auth } = useAuthentication();
     const user = auth.currentUser;

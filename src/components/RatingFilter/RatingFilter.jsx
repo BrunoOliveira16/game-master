@@ -45,7 +45,7 @@ const RatingFilter = ({ setRatingFilter, setSortOrder }) => {
           />
         ))}
       </div>
-      <div className='list-item mt-1' onClick={handleSortClick}>
+      <div className='list-item mt-1 cursor' onClick={handleSortClick}>
         Ordenar por avaliação ({sortOrder === 'desc' ? 'decrescente' : 'crescente'})
       </div>
     </aside>

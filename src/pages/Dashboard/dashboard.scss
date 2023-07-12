@@ -1,13 +1,32 @@
 @use 'styles/variables';
+@use 'styles/mixins';
 
 .dash {
 
-    h2 {
-        margin-block: 2rem;
+    &-title {
+        margin-top: 1rem;
         font-size: variables.$big-font-size;
+    }
 
-        span {
-            color: variables.$text-second-color;
+    &-info {
+        font-size: variables.$title-font-size;
+        margin-bottom: 1rem;
+    }
+
+    &-cards {
+        width: 100%;
+        @include mixins.display-grid(3, 1fr, 1%, 2rem);
+
+        @media screen and (max-width: variables.$tablet) {
+            @include mixins.display-grid(2, 1fr, 1%, 2rem);
         }
+
+        @media screen and (max-width: variables.$mobile) {
+            display: block;
+        }
+    }
+
+    span {
+        color: variables.$text-second-color;
     }
 }
