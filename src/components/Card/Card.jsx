@@ -4,28 +4,23 @@ import { motion } from 'framer-motion';
 // Custom Hooks
 import useFavorites from 'hooks/useFavorites';
 import useRating from 'hooks/useRating';
-
 // Context
 import { useAppContext } from 'context/useAppContext';
 import { AuthContext } from 'context/AuthContext';
-
 // Styles
 import './card.scss';
-
 // Components
 import Modal from 'components/Modal/Modal';
 
 const Card = ({ title, thumbnailUrl, item, developer }) => {
   const { user } = useContext(AuthContext)
   const { favorites, setFavorites, ratings } = useAppContext();
-  
   const isFavorited = favorites.some((favorite) => favorite.id === item.id);
   const [ isFavorite, setIsFavorite ] = useState(isFavorited);
   const { handleAddFavorite, handleRemoveFavorite }  = useFavorites(setFavorites);
-  
   const [ isRating, setIsRating ] = useState(ratings[item.id] || 0);
   const { handleAddRatings, handleRemoveRatings } = useRating(item);
-
+  const [ highlightStar, setHighlightStar ] = useState(-1);
   const [ showModal, setShowModal ] = useState(false);
   const [ textMessage, setTextMessage ] = useState('');
 
@@ -67,6 +62,13 @@ const Card = ({ title, thumbnailUrl, item, developer }) => {
     }
   }
 
+  const handleMouseEnter = (index) => {
+    setHighlightStar(index)
+  }
+  const handleMouseLeave = () => {
+    setHighlightStar(-1);
+  }
+
   return (
     <>
       <Modal 
@@ -93,12 +95,13 @@ const Card = ({ title, thumbnailUrl, item, developer }) => {
               onClick={ handleFavoritClick }
               className={isFavorite ? 'isFavorite' : ''}
             />
-            <div>
-              {[1, 2, 3, 4].map((star) => (
+            <div onMouseLeave={handleMouseLeave}>
+              {[1, 2, 3, 4].map((star, index) => (
                 <BsStarFill 
                   key={star}
                   onClick={ () => handleRatingClick(star) }
-                  className={isRating >= star ? 'isRated' : ''}
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  className={(isRating >= star || highlightStar >= index) ? 'highlight' : ''}
                 />
               ))}
             </div>
