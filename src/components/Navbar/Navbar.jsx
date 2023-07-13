@@ -25,7 +25,7 @@ const Navbar = () => {
                 {!user && (
                     <>
                         <li className='navbar-item'>
-                            <NavLink id='login' to='/auth/login'>Login</NavLink>
+                            <NavLink id='login' to='/auth'>Login</NavLink>
                         </li>
                     </>
                 )}

@@ -13,8 +13,7 @@ import Header from './components/Header/Header';
 
 // Pages
 import Home from './pages/Home/Home';
-import Login from './pages/Login/Login';
-import Register from './pages/Register/Register';
+import Auth from './pages/Auth/Auth';
 import Dashboard from './pages/Dashboard/Dashboard';
 
 function App() {
@@ -43,16 +42,12 @@ function App() {
               element={ <Home /> } 
             />
             <Route 
-              path='/auth/login' 
-              element={!user ? <Login /> : <Navigate to='/' /> } 
-            />
-            <Route 
-              path='/auth/register' 
-              element={!user ? <Register /> : <Navigate to='/' /> } 
+              path='/auth' 
+              element={!user ? <Auth /> : <Navigate to='/' /> } 
             />
             <Route 
               path='/dashboard' 
-              element={user ? <Dashboard /> : <Navigate to='/auth/login' /> } 
+              element={user ? <Dashboard /> : <Navigate to='/' /> } 
             />
           </Routes>
         </BrowserRouter>
