@@ -41,7 +41,7 @@ const RatingFilter = ({ setRatingFilter, setSortOrder }) => {
           <BsStarFill
             key={star}
             onClick={() => handleRatingClick(star)}
-            className={rating >= star ? 'isRated' : ''}
+            className={rating >= star ? 'highlight' : ''}
           />
         ))}
       </div>
