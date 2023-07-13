@@ -2,16 +2,16 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA1HzJQUwkzokT-UoYJbjziOkh6Yo8_ZQI",
-  authDomain: "game-master-98cb1.firebaseapp.com",
-  projectId: "game-master-98cb1",
-  storageBucket: "game-master-98cb1.appspot.com",
-  messagingSenderId: "542662079753",
-  appId: "1:542662079753:web:373ca89c3724659a57cfd8"
+  apiKey: "AIzaSyBKm_eWVwEpHXlnlT0vF4DpB7RZl230388",
+  authDomain: "game-master-681ca.firebaseapp.com",
+  projectId: "game-master-681ca",
+  storageBucket: "game-master-681ca.appspot.com",
+  messagingSenderId: "369851307929",
+  appId: "1:369851307929:web:45bc86602fa2b4069fa508"
 };
 
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export { db, app };
+export { db };

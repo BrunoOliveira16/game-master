@@ -14,7 +14,7 @@ const Navbar = () => {
 
     const handleLogout = async () => {
         await logout(setFavorites);
-      };
+    };
 
     return (
         <nav>
