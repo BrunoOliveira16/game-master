@@ -64,6 +64,23 @@ a {
     margin-top: 1rem;
 }
 
+.btn {
+    width: 100%;
+    padding: .5rem 0 ;
+    text-align: center;
+    font-size: variables.$title-font-size;
+    font-weight: bold;
+    background-color: variables.$text-second-color;
+    color: variables.$text-primary-color;
+    border: none;
+    border-radius: 5px;
+    transition: all .6s;
+
+    &:hover {
+        background-color: variables.$hover-primary-color;
+    }
+}
+
 button,
 a,
 .cursor {
@@ -98,21 +115,6 @@ form {
     }
 
     button {
-        width: 100%;
-        padding: .5rem 0 ;
         margin-block: 1.5rem;
-        text-align: center;
-        font-size: variables.$title-font-size;
-        font-weight: bold;
-        background-color: variables.$text-second-color;
-        color: variables.$text-primary-color;
-        cursor: pointer;
-        border: none;
-        border-radius: 5px;
-        transition: all .6s;
-
-        &:hover {
-            background-color: variables.$hover-primary-color;
-        }
     }
 }

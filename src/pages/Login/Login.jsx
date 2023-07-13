@@ -51,8 +51,8 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        {!loading &&  <button type='submit'>Entrar</button>}
-        {loading &&  <button disabled>Aguarde...</button>}
+        {!loading &&  <button className='btn' type='submit'>Entrar</button>}
+        {loading &&  <button className='btn' disabled>Aguarde...</button>}
         {error && <p className='error text-center'>{error}</p>}
       </form>
       <p className='text-center'>Não possui uma conta? <NavLink className='nav-link' id='register' to='/auth/register'>Registre-se agora</NavLink></p>
