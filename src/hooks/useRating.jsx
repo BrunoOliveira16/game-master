@@ -1,21 +1,16 @@
 import { db } from '../firebase/config';
 import { addDoc, collection, deleteDoc, query, where, getDocs, updateDoc } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
 import { useAuthentication } from 'hooks/useAuthentication';
 import { useAppContext } from 'context/useAppContext'
 
 const useRating = () => {
-    const navigate = useNavigate();
     const { auth } = useAuthentication();
-    const user = auth.currentUser;
     const { setRatings } = useAppContext();
+    const user = auth.currentUser;
+    
 
     const handleAddRatings = async (item) => {
-        if (!user) {
-            alert('Você precisa fazer login para avaliar este item');
-            navigate('/auth/login');
-            return;
-        }
+        if (!user) return;
 
         try {
             const ratingsRef = collection(db, 'users', user.uid, 'ratings');
@@ -35,11 +30,7 @@ const useRating = () => {
     };
 
     const handleRemoveRatings = async(item) => {
-        if (!user) {
-            alert('Você precisa fazer login para avaliar este item');
-            navigate('/auth/login');
-            return;
-        }
+        if (!user) return;
 
         try {
             const ratingsRef = collection(db, 'users', user.uid, 'ratings');

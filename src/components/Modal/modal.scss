@@ -1,0 +1,37 @@
+@use 'styles/variables';
+@use 'styles/mixins';
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background-color: variables.$bg-overlay-color;
+    @include mixins.display-center;
+
+    &-container {
+        background-color: variables.$bg-second-color;
+        color: variables.$text-primary-color;
+        padding: 2.5rem 2rem;
+        border-radius: .7rem;
+        position: relative;
+
+        &-close {
+            position: absolute;
+            top: .7rem;
+            right: .7rem;
+            font-size: variables.$big-font-size;
+            transition: all .6s;
+
+            &:hover {
+                color: variables.$text-second-color;
+            }
+        }
+
+        p {
+            margin-top: 1rem;
+        }
+    }
+
+    button {
+        margin-top: 1rem;
+    }
+}

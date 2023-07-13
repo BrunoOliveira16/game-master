@@ -12,6 +12,9 @@ import { AuthContext } from 'context/AuthContext';
 // Styles
 import './card.scss';
 
+// Components
+import Modal from 'components/Modal/Modal';
+
 const Card = ({ title, thumbnailUrl, item, developer }) => {
   const { user } = useContext(AuthContext)
   const { favorites, setFavorites, ratings } = useAppContext();
@@ -23,6 +26,9 @@ const Card = ({ title, thumbnailUrl, item, developer }) => {
   const [ isRating, setIsRating ] = useState(ratings[item.id] || 0);
   const { handleAddRatings, handleRemoveRatings } = useRating(item);
 
+  const [ showModal, setShowModal ] = useState(false);
+  const [ textMessage, setTextMessage ] = useState('');
+
   useEffect(() => {
     if(!user) {
       setIsFavorite(false);
@@ -31,6 +37,12 @@ const Card = ({ title, thumbnailUrl, item, developer }) => {
   }, [user])
 
   const handleFavoritClick = () => {
+    if (!user) {
+      setShowModal(true);
+      setTextMessage("adicionar como favorito")
+      return;
+    }
+
     setIsFavorite(!isFavorite)
     if(isFavorite) {
       handleRemoveFavorite(item);
@@ -40,6 +52,12 @@ const Card = ({ title, thumbnailUrl, item, developer }) => {
   }
 
   const handleRatingClick = (newRating) => {
+    if (!user) {
+      setShowModal(true);
+      setTextMessage("avaliar o jogo")
+      return;
+    }
+
     if(isRating === newRating) {
       handleRemoveRatings(item);
       setIsRating(0)
@@ -50,37 +68,44 @@ const Card = ({ title, thumbnailUrl, item, developer }) => {
   }
 
   return (
-    <motion.div
-      layout 
-      animate={{ opacity: 1.5, scale: 1 }} 
-      initial={{ opacity: 1, scale: 0.8 }} 
-      exit={{ opacity: 1, scale: 0.8 }}
-      transition={{duration: .6}} 
-      className='card'
-    >
-      <div className='card-wrapper'>
-        <img src={thumbnailUrl} alt={title} className='card-wrapper-img'/>
-      </div> 
-      <div className='card-content'>
-        <h2 className='card-content-title'>{title}</h2>
-        <p className='card-content-dev'>Developer: <span>{developer}</span></p>
-        <div className='card-content-rating'>
-          <BsFillHeartFill 
-            onClick={ handleFavoritClick }
-            className={isFavorite ? 'isFavorite' : ''}
-          />
-          <div>
-            {[1, 2, 3, 4].map((star) => (
-              <BsStarFill 
-                key={star}
-                onClick={ () => handleRatingClick(star) }
-                className={isRating >= star ? 'isRated' : ''}
-              />
-            ))}
+    <>
+      <Modal 
+        showModal={showModal}
+        setShowModal={setShowModal} 
+        textMessage={textMessage}
+      />
+      <motion.div
+        layout 
+        animate={{ opacity: 1.5, scale: 1 }} 
+        initial={{ opacity: 1, scale: 0.8 }} 
+        exit={{ opacity: 1, scale: 0.8 }}
+        transition={{duration: .6}} 
+        className='card'
+      >
+        <div className='card-wrapper'>
+          <img src={thumbnailUrl} alt={title} className='card-wrapper-img'/>
+        </div> 
+        <div className='card-content'>
+          <h2 className='card-content-title'>{title}</h2>
+          <p className='card-content-dev'>Developer: <span>{developer}</span></p>
+          <div className='card-content-rating'>
+            <BsFillHeartFill 
+              onClick={ handleFavoritClick }
+              className={isFavorite ? 'isFavorite' : ''}
+            />
+            <div>
+              {[1, 2, 3, 4].map((star) => (
+                <BsStarFill 
+                  key={star}
+                  onClick={ () => handleRatingClick(star) }
+                  className={isRating >= star ? 'isRated' : ''}
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </>
   );
 };
 

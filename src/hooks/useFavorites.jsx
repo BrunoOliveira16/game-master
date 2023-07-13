@@ -1,19 +1,13 @@
 import { db } from '../firebase/config';
 import { collection, addDoc, deleteDoc, query, where, getDocs } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
 import { useAuthentication } from 'hooks/useAuthentication';
 
 const useFavorites = (setFavorites) => {
-    const navigate = useNavigate();
     const { auth } = useAuthentication();
     const user = auth.currentUser;
 
     const handleAddFavorite = async (item) => {
-        if (!user) {
-            alert('Você precisa fazer login para marcar este item como favorito');
-            navigate('/auth/login');
-            return;
-        }
+        if (!user) return;
         
         try {
             const favoritesRef = collection(db, 'users', user.uid, 'favorites');
@@ -25,11 +19,7 @@ const useFavorites = (setFavorites) => {
     };
 
     const handleRemoveFavorite = async (item) => {
-        if (!user) {
-            alert('Você precisa fazer login para marcar este item como favorito');
-            navigate('/auth/login');
-            return;
-        }
+        if (!user) return;
         
         try {
             const favoritesRef = collection(db, 'users', user.uid, 'favorites');
