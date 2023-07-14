@@ -28,7 +28,7 @@ const Register = ({ toggleShowLogin }) => {
     }
     const sucess = await createUser(user)
     if(sucess) {
-      navigate('/auth/login');
+      navigate('/dashboard');
     }
   };
 
