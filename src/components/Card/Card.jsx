@@ -31,13 +31,13 @@ const Card = ({ title, thumbnailUrl, item, developer }) => {
     }
   }, [user])
 
+  // Função para itens favoritos
   const handleFavoritClick = () => {
     if (!user) {
       setShowModal(true);
       setTextMessage("adicionar como favorito")
       return;
     }
-
     setIsFavorite(!isFavorite)
     if(isFavorite) {
       handleRemoveFavorite(item);
@@ -46,22 +46,23 @@ const Card = ({ title, thumbnailUrl, item, developer }) => {
     }
   }
 
+  //Função para itens avaliados
   const handleRatingClick = (newRating) => {
     if (!user) {
       setShowModal(true);
       setTextMessage("avaliar o jogo")
       return;
     }
-
-    if(isRating === newRating) {
+    if(ratings[item.id] === newRating) {
       handleRemoveRatings(item);
-      setIsRating(0)
+      setIsRating(0);
     } else {
       handleAddRatings({...item, rating: newRating});
-      setIsRating(newRating)
+      setIsRating(newRating);
     }
-  }
+  };
 
+  // Para animação das estrelas de avaliação
   const handleMouseEnter = (index) => {
     setHighlightStar(index)
   }

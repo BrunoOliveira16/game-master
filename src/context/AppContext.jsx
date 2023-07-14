@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import { db } from '../firebase/config';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, onSnapshot } from 'firebase/firestore';
 import { useAuthentication } from 'hooks/useAuthentication';
 
 export const AppContext = createContext();
@@ -30,17 +30,17 @@ export const AppProvider = ({ children }) => {
       //Avaliações
       useEffect(() => {
         if(user) {
-            const fetchRatings = async () => {
-                const ratingsRef = collection(db, 'users', user.uid, 'ratings');
-                const querySnapshot = await getDocs(ratingsRef);
-                const ratingsData = querySnapshot.docs.reduce((acc, doc) => {
-                    const data = doc.data();
-                    acc[data.id] = data.rating;
-                    return acc;
-                }, {});
-                setRatings(ratingsData);
-            };
-            fetchRatings();
+          const ratingsRef = collection(db, 'users', user.uid, 'ratings');
+          const unsubscribe = onSnapshot(ratingsRef, (querySnapshot) => {
+            const ratingsData = querySnapshot.docs.reduce((acc, doc) => {
+              const data = doc.data();
+              acc[data.id] = data.rating;
+              return acc;
+            }, {});
+            setRatings(ratingsData);
+          });
+
+          return () => unsubscribe();
         }
       }, [user]);
     

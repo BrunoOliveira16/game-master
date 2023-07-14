@@ -23,7 +23,7 @@ const useRating = () => {
                     updateDoc(doc.ref, item);
                 });
             }
-            setRatings((prevRat) => ({ ...prevRat, [item.id]: item}));
+            setRatings((prevRat) => ({ ...prevRat, [item.id]: item.rating }));
         } catch(error) {
             console.log(error);
         }
