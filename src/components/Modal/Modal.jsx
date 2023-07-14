@@ -6,7 +6,7 @@ const Modal = ({ showModal, setShowModal, textMessage }) => {
     const navigate = useNavigate();
 
     const handleLoginClick = () => {
-        navigate('/auth/login');
+        navigate('/auth');
     };
 
     if(!showModal) return null;
