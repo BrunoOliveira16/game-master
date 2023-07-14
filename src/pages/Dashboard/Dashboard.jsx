@@ -17,8 +17,13 @@ const Dashboard = () => {
   const [ratingFilter, setRatingFilter] = useState(null);
   const [sortOrder, setSortOrder] = useState('desc');
 
-  const filteredFavorites = favorites.filter((item) => (
-    !ratingFilter || ratings[item.id] === ratingFilter
+  //Cria um array com os jogos favoritos e avaliados
+  const allGames = [...favorites, ...ratings];
+  //Remove os jogos duplicados do array
+  const uniqueGames = allGames.filter((game, index) => allGames.findIndex((itemGame) => itemGame.id === game.id) === index);
+  //Filtra os jogos por avaliação
+  const filteredGames = uniqueGames.filter((item) => (
+    !ratingFilter || ratings.find((rating) => rating.id === item.id)?.rating === ratingFilter
   ))
 
   return (
@@ -27,19 +32,26 @@ const Dashboard = () => {
       <h3 className='text-title'>Seus jogos favoritos:</h3>
       <p className='dash-info'>Você possui <span>{favorites.length}</span> jogos como favoritos e <span>{Object.keys(ratings).length}</span> jogos avaliados</p>
       <RatingFilter className='dash-filter' setRatingFilter={setRatingFilter} setSortOrder={setSortOrder} />
-      <div className='dash-cards'>
-        <Sort by='rating' ratings={ratings} sortOrder={sortOrder}>
-          {filteredFavorites.map((item) => (
-            <Card
-              key={item.id}
-              title={item.title}
-              thumbnailUrl={item.thumbnail}
-              item={item}
-              developer={item.developer}
-            />
-          ))}
-        </Sort>
-      </div>
+      {(!favorites.length && !Object.keys(ratings).length) ? 
+        <div className='dash-text'>
+          <p className='text-center dash-cards-text'>
+            Parece que você ainda não escolheu seu próximo jogo favorito, não perca tempo.
+          </p>
+        </div> : 
+        <div className='dash-cards'>
+          <Sort by='rating' ratings={ratings} sortOrder={sortOrder}>
+            {filteredGames.map((item) => (
+              <Card
+                key={item.id}
+                title={item.title}
+                thumbnailUrl={item.thumbnail}
+                item={item}
+                developer={item.developer}
+              />
+            ))}
+          </Sort>
+        </div>
+      }
     </div>
   )  
 }

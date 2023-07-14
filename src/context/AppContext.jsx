@@ -10,7 +10,7 @@ export const AppProvider = ({ children }) => {
     const [ genres, setGenres ] = useState([]);
     const [ selectedGenre, setSelectedGenre ] = useState(null);
     const [ favorites, setFavorites ] = useState([]);
-    const [ ratings, setRatings ] = useState({});
+    const [ ratings, setRatings ] = useState([]);
     const { auth } = useAuthentication();
     const user = auth.currentUser;
 
@@ -29,17 +29,13 @@ export const AppProvider = ({ children }) => {
 
       //Avaliações
       useEffect(() => {
-        if(user) {
+        if (user) {
           const ratingsRef = collection(db, 'users', user.uid, 'ratings');
           const unsubscribe = onSnapshot(ratingsRef, (querySnapshot) => {
-            const ratingsData = querySnapshot.docs.reduce((acc, doc) => {
-              const data = doc.data();
-              acc[data.id] = data.rating;
-              return acc;
-            }, {});
+            const ratingsData = querySnapshot.docs.map((doc) => doc.data());
             setRatings(ratingsData);
           });
-
+    
           return () => unsubscribe();
         }
       }, [user]);

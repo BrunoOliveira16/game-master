@@ -11,11 +11,12 @@ const useCard = (item) => {
   const isFavorited = favorites.some((favorite) => favorite.id === item.id);
   const [isFavorite, setIsFavorite] = useState(isFavorited);
 
-  const [isRating, setIsRating] = useState(ratings[item.id] || 0);
-
+  const ratingValue = ratings.find((rating) => rating.id === item.id)?.rating || 0;
+  const [ isRating, setIsRating] = useState(ratingValue);
+  
   const [showModal, setShowModal] = useState(false);
   const [textMessage, setTextMessage] = useState('');
-  
+
   const { handleAddFavorite, handleRemoveFavorite } = useFavorites(setFavorites);
   const { handleAddRatings, handleRemoveRatings } = useRating(item);
 
@@ -49,7 +50,7 @@ const useCard = (item) => {
       setTextMessage('avaliar o jogo');
       return;
     }
-    if (ratings[item.id] === newRating) {
+    if (isRating === newRating) {
       handleRemoveRatings(item);
       setIsRating(0);
     } else {

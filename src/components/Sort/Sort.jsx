@@ -2,8 +2,18 @@ import React from 'react';
 
 // A função compara dois itens e determinar sua ordem com base em suas avaliações
 const compare = (a, b, by, ratings, sortOrder) => {
-  const ratingA = ratings[a.props.item.id];
-  const ratingB = ratings[b.props.item.id];
+  const ratingA = ratings.find(rating => rating.id === a.props.item.id)?.rating || 0;
+  const ratingB = ratings.find(rating => rating.id === b.props.item.id)?.rating || 0;
+
+  // Verifica se um dos itens não foi avaliado
+  if(ratingA === 0 || ratingB === 0) {
+    if(ratingA === 0 && ratingB !== 0) {
+      return 1;
+    } else if (ratingA !== 0 && ratingB === 0) {
+      return -1;
+    }
+    return 0;
+  }
 
   // lógica de comparação
   if (ratingA < ratingB) {

@@ -1,5 +1,5 @@
 import { db } from '../firebase/config';
-import { addDoc, collection, deleteDoc, query, where, getDocs, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, query, where, getDocs, updateDoc, deleteDoc } from 'firebase/firestore';
 import { useAuthentication } from 'hooks/useAuthentication';
 import { useAppContext } from 'context/useAppContext'
 
@@ -16,15 +16,18 @@ const useRating = () => {
             const ratingsRef = collection(db, 'users', user.uid, 'ratings');
             const q = query(ratingsRef, where('id', '==', item.id));
             const querySnapshot = await getDocs(q);
-            if(querySnapshot.empty){
-                await addDoc(ratingsRef, item);
+            if (querySnapshot.empty) {
+              await addDoc(ratingsRef, item);
             } else {
-                querySnapshot.forEach((doc) => {
-                    updateDoc(doc.ref, item);
-                });
+              querySnapshot.forEach((doc) => {
+                updateDoc(doc.ref, item);
+              });
             }
-            setRatings((prevRat) => ({ ...prevRat, [item.id]: item.rating }));
-        } catch(error) {
+            setRatings((prevRat) => [
+              ...prevRat.filter((rating) => rating.id !== item.id),
+              item,
+            ]);
+          } catch(error) {
             console.log(error);
         }
     };
@@ -37,14 +40,12 @@ const useRating = () => {
             const q = query(ratingsRef, where('id', '==', item.id));
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
-                deleteDoc(doc.ref);
+              deleteDoc(doc.ref);
             });
-            setRatings((prev) => {
-                const newRatings = { ...prev };
-                delete newRatings[item.id];
-                return newRatings;
-            });
-        } catch (error) {
+            setRatings((prevRat) =>
+              prevRat.filter((rating) => rating.id !== item.id)
+            );
+          } catch (error) {
             console.log(error);
         }
     }

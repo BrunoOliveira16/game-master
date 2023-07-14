@@ -31,7 +31,7 @@ const MainContent = () => {
         (!showFavorites || favorites.some((favorite) => favorite.id === item.id)) &&
         (!selectedGenre || item.genre === selectedGenre) && 
         (!search || item.title.toLowerCase().includes(search.toLowerCase())) &&
-        (!ratingFilter || ratings[item.id] === ratingFilter)
+        (!ratingFilter || ratings.find(rating => rating.id === item.id)?.rating === ratingFilter)
     ));
 
     return (

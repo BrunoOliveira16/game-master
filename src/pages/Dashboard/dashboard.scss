@@ -13,6 +13,11 @@
         margin-bottom: 1rem;
     }
 
+    &-text {
+        margin-top: 2rem;
+        font-size: variables.$medium-font-size;
+    }
+
     &-cards {
         width: 100%;
         @include mixins.display-grid(3, 1fr, 1%, 2rem);
