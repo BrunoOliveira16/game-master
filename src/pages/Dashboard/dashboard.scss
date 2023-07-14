@@ -31,10 +31,9 @@
     }
 
     .list {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include mixins.display-center;
         margin-bottom: 1rem;
+        padding-block: .5rem;
 
         &-item {
             margin-top: 0;

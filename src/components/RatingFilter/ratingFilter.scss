@@ -1,0 +1,11 @@
+@use 'styles/mixins';
+
+.rating {
+    padding-top: 0;
+
+    .list-item {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+    }
+}
