@@ -53,6 +53,7 @@ const MainContent = () => {
                                     thumbnailUrl={item.thumbnail}
                                     item={item}
                                     developer={item.developer}
+                                    profileUrl={item.freetogame_profile_url}
                                     ratings={ratings}
                                 />
                             ))}

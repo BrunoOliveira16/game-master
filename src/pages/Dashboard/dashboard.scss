@@ -2,6 +2,9 @@
 @use 'styles/mixins';
 
 .dash {
+    width: 95%;
+    padding-bottom: 2rem;
+
     @media screen and (max-width: variables.$mobile){
         text-align: center;
     }
@@ -13,11 +16,8 @@
 
     &-info {
         font-size: variables.$title-font-size;
+        text-align: center;
         margin-bottom: 1rem;
-
-        @media screen and (max-width: variables.$tablet) {
-            text-align: center;
-        }
     }
 
     &-text {

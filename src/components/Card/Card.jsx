@@ -5,7 +5,7 @@ import useCard from 'hooks/useCard';
 import Modal from 'components/Modal/Modal';
 import './card.scss';
 
-const Card = ({ title, thumbnailUrl, item, developer }) => {
+const Card = ({ title, thumbnailUrl, item, developer, profileUrl }) => {
   const [highlightStar, setHighlightStar] = useState(-1);
   const {
     isFavorite,
@@ -48,6 +48,8 @@ const Card = ({ title, thumbnailUrl, item, developer }) => {
           <p className='card-content-dev'>
             Developer: <span>{developer}</span>
           </p>
+          <a className='card-content-link' href={profileUrl} target='__blank'>Saber mais</a>
+          <hr />
           <div className='card-content-rating'>
             <BsFillHeartFill
               onClick={handleFavoritClick}

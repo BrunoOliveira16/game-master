@@ -46,6 +46,7 @@
         }
 
         &-dev {
+            margin-bottom: 1rem;
             span {
                 color: variables.$text-second-color;
             }
@@ -56,6 +57,24 @@
             align-items: center;
             justify-content: space-between;
             margin-top: .8rem;
+        }
+
+        &-link {
+            padding: .3rem .5rem;
+            
+            background-color: variables.$bg-second-color;
+            color: variables.$text-primary-color;
+            border-radius: 5px;
+            transition: all .7s;
+
+            &:hover {
+                background-color: variables.$text-second-color;
+            }
+        }
+
+        hr {
+            margin-block: 1.5rem 1rem;
+            border: 1px solid variables.$bg-second-color;
         }
     }
 }
