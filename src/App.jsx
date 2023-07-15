@@ -15,6 +15,7 @@ import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
 import Auth from './pages/Auth/Auth';
 import Dashboard from './pages/Dashboard/Dashboard';
+import PageNotFound from './pages/PageNotFound/PageNotFound';
 
 function App() {
   const [ user, setUser ] = useState(undefined);
@@ -48,6 +49,10 @@ function App() {
             <Route 
               path='/dashboard' 
               element={user ? <Dashboard /> : <Navigate to='/' /> } 
+            />
+            <Route
+              path='*' 
+              element={ <PageNotFound /> } 
             />
           </Routes>
         </BrowserRouter>

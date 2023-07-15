@@ -1,0 +1,17 @@
+@use 'styles/variables';
+
+.notFound {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        max-width: 560px;
+        width: 100%;
+    }
+
+    p {
+        font-size: variables.$large-font-size;
+    }
+}
