@@ -15,11 +15,13 @@ const Header = () => {
   return (
     <header>
         <div className="container text-center-sm">
-          <div className="header-brand">
-            <img src={Logo} alt="imagem de um jostick de video game"/>
-            <h1>Games<span>Master</span></h1>
+          <div className='wrapper-menu'>
+            <div className="header-brand">
+              <img src={Logo} alt="imagem de um jostick de video game"/>
+              <h1>Games<span>Master</span></h1>
+            </div>
+            <Navbar />
           </div>
-          <Navbar />
           <Search onSearch={setSearch} />
         </div>
     </header>

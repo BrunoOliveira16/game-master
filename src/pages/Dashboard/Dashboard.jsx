@@ -29,16 +29,17 @@ const Dashboard = () => {
   return (
     <div className="dash container">
       <h2 className='dash-title text-center'>Olá, <span >{user.displayName}</span></h2>
-      <h3 className='text-title'>Seus jogos favoritos:</h3>
-      <p className='dash-info'>Você possui <span>{favorites.length}</span> jogos como favoritos e <span>{Object.keys(ratings).length}</span> jogos avaliados</p>
+      <p className='dash-info'>Você possui <span>{favorites.length}</span> jogos como favoritos e <span>{ratings.length}</span> jogos avaliados</p>
       <RatingFilter className='dash-filter' setRatingFilter={setRatingFilter} setSortOrder={setSortOrder} />
-      {(!favorites.length && !Object.keys(ratings).length) ? 
+      {(!favorites.length && !ratings.length) ? 
         <div className='dash-text'>
           <p className='text-center dash-cards-text'>
             Parece que você ainda não escolheu seu próximo jogo favorito, não perca tempo.
           </p>
         </div> : 
-        <div className='dash-cards'>
+        <>
+          <h3 className='text-title'>Seus jogos favoritos</h3>
+          <div className='dash-cards'>
           <Sort by='rating' ratings={ratings} sortOrder={sortOrder}>
             {filteredGames.map((item) => (
               <Card
@@ -51,6 +52,7 @@ const Dashboard = () => {
             ))}
           </Sort>
         </div>
+        </>
       }
     </div>
   )  

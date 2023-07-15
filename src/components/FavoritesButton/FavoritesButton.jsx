@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAuthentication } from 'hooks/useAuthentication';
+import './favoritesButton.scss';
 
 const FavoritesButton = ({ setShowFavorites }) => {
     const [active, setActive] = useState(false);
@@ -26,21 +27,16 @@ const FavoritesButton = ({ setShowFavorites }) => {
     }
 
     return (
-        <aside className='sidebar'>
-            <h3 className='text-title'>Seção do usuário</h3>
-            <nav>
-                <ul className='list'>
-                    <li 
-                        onClick={handleFavoritesClick} 
-                        className={active === true ? 'list-item active-work' : 'list-item'}
-                    >
-                        Meus favoritos
-                    </li>
-                </ul>
-            </nav>
-            
-        </aside>
-        
+        <nav className='favorites'>
+            <ul className='favorites-list'>
+                <li 
+                    onClick={handleFavoritesClick} 
+                    className={active === true ? ' active-work favorites-list-item' : 'favorites-list-item'}
+                >
+                    Meus favoritos
+                </li>
+            </ul>
+        </nav>
     );
 };
 

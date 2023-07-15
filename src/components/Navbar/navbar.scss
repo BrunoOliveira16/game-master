@@ -1,28 +1,81 @@
 @use 'styles/variables';
+@use 'styles/mixins';
 
 .navbar {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
 
-    &-item {
+    &-list {
         display: flex;
-        font-size: variables.$medium-font-size;
+        align-items: center;
+        gap: 1rem;
+    
+        @media screen and (max-width: variables.$mobile-lg) {
+            width: 0;
+            transition: all 1s;
+        }
+    
+        &-item {
+            display: flex;
+            font-size: variables.$medium-font-size;
 
-        a, svg {
-            color: variables.$text-primary-color;
-            transition: all .5s;
-
-            &:hover {
-                color: variables.$text-second-color;
+            @media screen and (max-width: variables.$mobile-lg) {
+                display: none;
             }
+    
+            a, svg {
+                color: variables.$text-primary-color;
+                transition: all .5s;
+    
+                &:hover {
+                    color: variables.$text-second-color;
+                }
+            }
+        }
+    
+        #home.active,
+        #login.active,
+        #dashboard.active {
+            color: variables.$text-second-color;
         }
     }
 
-    #home.active,
-    #login.active,
-    #register.active,
-    #dashboard.active {
-        color: variables.$text-second-color;
+    &-list--mobile {
+        width: 50%;
+        height: 100vh;
+        @include mixins.display-center;
+        flex-direction: column;
+        gap: 1rem;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 2;
+        background-color: variables.$bg-card-color;
+        transition: all 1s;
+
+        .navbar-list-item {
+            display: flex;   
+        }
+
+    }
+
+    &-mobile {
+        display: none;
+        font-size: variables.$big-font-size;
+    
+        @media screen and (max-width: variables.$mobile-lg) {
+            display: flex;
+            justify-content: center;
+        }
+
+        .show-menu-icon {
+            display: none;
+
+            &--mobile {
+                position: fixed;
+                top: 3%;
+                right: 3%;
+                z-index: 3;
+            }
+        }
     }
 }
+

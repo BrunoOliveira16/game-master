@@ -2,9 +2,14 @@
 @use 'styles/mixins';
 
 .wrapper {
+    width: 20%;
     @include mixins.display-between(row, center);
     padding: .5rem;
     background-color: variables.$bg-primary-color;
+
+    @media screen and (max-width: variables.$mobile-lg) {
+        width: 100%;
+    }
 }
 
 .btn-search {

@@ -4,6 +4,12 @@
     h2 {
         margin-block: 2rem;
     }
+
+    @media screen and (max-width: variables.$mobile-lg) {
+        width: 90%;
+        margin: 0 auto;
+        padding-bottom: 3rem;
+    }
 }
 
 .nav-link {

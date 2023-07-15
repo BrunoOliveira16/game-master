@@ -1,23 +1,16 @@
 @use 'styles/variables';
 @use 'styles/mixins';
 
-.genres {
+.favorites {
     &-list {
         width: 100%;
-        padding: 1rem;
-        display: block;
-        gap: .8rem;
+        padding: 1rem 1rem 0;
         background-color: variables.$bg-second-color;
 
-        @media screen and (max-width: variables.$tablet) {
-            @include mixins.flex-wrap;
-            margin-bottom: 1.5rem;
+        @media screen and (max-width: variables.$mobile) {
+            padding: .8rem .8rem 0;
         }
 
-        @media screen and (max-width: variables.$mobile) {
-            display: none;
-        }
-    
         &-item {
             padding: .5rem;
             font-size: variables.$medium-font-size;
@@ -28,19 +21,10 @@
                 border: 1px solid variables.$text-second-color;
                 color: variables.$text-second-color;
             }
-        }
-    }
 
-    &-select {
-        display: none;
-        width: 100%;
-        padding: .8rem .5rem;
-        background-color: variables.$bg-second-color;
-        color: variables.$text-primary-color;
-        border: none;
-
-        @media screen and (max-width: variables.$mobile) {
-            display: block;
+            @media screen and (max-width: variables.$mobile) {
+                font-size: variables.$normal-font-size;
+            }
         }
     }
 }

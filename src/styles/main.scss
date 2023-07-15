@@ -1,4 +1,5 @@
 @use 'variables';
+@use 'mixins';
 
 /* -------------- Reset CSS -------------- */
 * {
@@ -34,18 +35,39 @@ a {
 
 .container {
     max-width: 1440px;
+    min-width: 360px;
     width: 100%;
     margin: 0 auto;
+}
+
+.wrapper-menu {
+    width: 75%;
+    @include mixins.display-between(row, center);
+
+    @media screen and (max-width: variables.$mobile-lg) {
+        width: 100%;
+        margin-bottom: .8rem;
+    }    
 }
 
 .text-title {
     text-transform: uppercase;
     margin-block: 1rem;
+
+    @media screen and (max-width: variables.$mobile) {
+        margin-block: .8rem;
+        font-size: variables.$normal-font-size;
+    }
 }
 
 .text-center,
 .text-center-sm {
     text-align: center;
+}
+
+.active-work {
+    border: 1px solid variables.$text-second-color !important;
+    color: variables.$text-second-color;
 }
 
 .isFavorite {
@@ -58,10 +80,6 @@ a {
 
 .error {
     color: variables.$favorite-color;
-}
-
-.mt-1 {
-    margin-top: 1rem;
 }
 
 .btn {
@@ -79,12 +97,6 @@ a {
     &:hover {
         background-color: variables.$hover-primary-color;
     }
-}
-
-button,
-a,
-.cursor {
-    cursor: pointer;
 }
 
 /* ------------- Forms styles -------------- */

@@ -8,13 +8,8 @@ header {
         @include mixins.display-between(row, center);
         padding: 1rem;
 
-        @media screen and (max-width: variables.$mobile) {
+        @media screen and (max-width: variables.$mobile-lg) {
             display: block;
-
-            .header-brand {
-                margin-bottom: 1rem;
-                justify-content: center !important;
-            }
         }
 
         .header-brand {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 // Custom Hooks
 import useFetchData from "hooks/useFetchData";
+import { useAuthentication } from 'hooks/useAuthentication';
 // Context
 import { useAppContext } from 'context/useAppContext';
 // Components
@@ -16,6 +17,8 @@ import './mainContent.scss';
 
 const MainContent = () => {
     const { data, loading, error } = useFetchData();
+    const { auth } = useAuthentication();
+    const user = auth.currentUser;
     const { search, selectedGenre, setGenres, favorites, ratings } = useAppContext();
     const [showFavorites, setShowFavorites] = useState(false);
     const [ratingFilter, setRatingFilter] = useState(null);
@@ -58,9 +61,15 @@ const MainContent = () => {
                 </div>
             </div>
             <div className='main-sidebar'>
-                <FavoritesButton setShowFavorites={setShowFavorites}/>
-                <RatingFilter setRatingFilter={setRatingFilter} setSortOrder={setSortOrder} />
-                <Sidebar />
+                {user ? <h3 className='text-title'>Seção do usuário</h3> : ''}
+                <div className="main-sidebar-user">
+                    <FavoritesButton setShowFavorites={setShowFavorites}/>
+                    <RatingFilter setRatingFilter={setRatingFilter} setSortOrder={setSortOrder} />
+                </div>
+
+                <div className="main-sidebar-nav">
+                    <Sidebar />
+                </div>
             </div>
         </main>
     );

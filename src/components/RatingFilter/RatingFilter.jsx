@@ -46,8 +46,8 @@ const RatingFilter = ({ setRatingFilter, setSortOrder }) => {
   }
 
   return (
-    <aside className='rating list'>
-      <div className='list-item'>
+    <aside className='rating'>
+      <div className='rating-list'>
         {[1, 2, 3, 4].map((star) => (
           <BsStarFill
             key={star}
@@ -56,7 +56,7 @@ const RatingFilter = ({ setRatingFilter, setSortOrder }) => {
           />
         ))}
       </div>
-      <div className='list-item cursor' onClick={handleSortClick}>
+      <div className='rating-list' onClick={handleSortClick}>
         Ordenar {sortOrder === 'desc' ? <RiSortDesc /> : <RiSortAsc /> }
       </div>
     </aside>
