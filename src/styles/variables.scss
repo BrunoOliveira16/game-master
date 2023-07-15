@@ -9,17 +9,27 @@ $title-font-size: 1.2rem;
 $normal-font-size: 1rem;
 
 /* ---------------- Cores ----------------- */
-$bg-primary-color: #131823;
-$bg-second-color: #1B2838;
-$bg-card-color: #080d1a;
-$bg-overlay-color: rgba(0, 0, 0, 0.5);
-$text-primary-color: #FFFFFF;
-$text-second-color: #0094FF;
-$hover-primary-color: #1c3d65;
-$favorite-color: #f03915;
-$rating-color: #f0cf15;
+:root {
+    --bg-primary-color: #131823;
+    --bg-second-color: #1B2838;
+    --bg-card-color: #080d1a;
+    --bg-overlay-color: rgba(0, 0, 0, 0.5);
+    --text-primary-color: #FFFFFF;
+    --text-second-color: #0094FF;
+    --hover-primary-color: #1c3d65;
+    --favorite-color: #f03915;
+    --rating-color: #f0cf15;
+  }
 
 /* -------------- Breakpoints -------------- */
 $mobile: 645px;
 $mobile-lg: 690px; 
 $tablet: 1023px;
+
+
+.light-theme {
+    --bg-primary-color: #efefef;
+    --bg-second-color: #d2cfcf;
+    --bg-card-color: #f5f8fd;
+    --text-primary-color: #131823;
+}

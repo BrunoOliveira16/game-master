@@ -49,7 +49,7 @@
     }
 
     span {
-        color: variables.$text-second-color;
+        color: var(--text-second-color);
     }
 
     .rating {

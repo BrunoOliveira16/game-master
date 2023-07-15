@@ -10,8 +10,8 @@
 }
 
 body {
-    background-color: variables.$bg-primary-color;
-    color: variables.$text-primary-color;
+    background-color: var(--bg-primary-color);
+    color: var(--text-primary-color);
     min-width: 360px;
 }
 
@@ -65,20 +65,20 @@ a {
 }
 
 .active-work {
-    border: 1px solid variables.$text-second-color !important;
-    color: variables.$text-second-color;
+    border: 1px solid var(--text-second-color) !important;
+    color: var(--text-second-color);
 }
 
 .isFavorite {
-    color: variables.$favorite-color;
+    color: var(--favorite-color);
 }
 
 .highlight {
-    color: variables.$rating-color;
+    color: var(--rating-color);
 }
 
 .error {
-    color: variables.$favorite-color;
+    color: var(--favorite-color);
 }
 
 .btn {
@@ -87,14 +87,14 @@ a {
     text-align: center;
     font-size: variables.$title-font-size;
     font-weight: bold;
-    background-color: variables.$text-second-color;
-    color: variables.$text-primary-color;
+    background-color: var(--text-second-color);
+    color: var(--text-primary-color);
     border: none;
     border-radius: 5px;
     transition: all .6s;
 
     &:hover {
-        background-color: variables.$hover-primary-color;
+        background-color: var(--hover-primary-color);
     }
 }
 

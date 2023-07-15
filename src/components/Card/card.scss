@@ -1,13 +1,14 @@
 @use 'styles/variables';
+@use 'styles/mixins';
 
 .card {
     width: 100%;
     display: block;
-    background-color: variables.$bg-card-color;
+    background-color: var(--bg-card-color);
     border: 2px solid transparent;
     border-radius: .8rem;
     overflow: hidden;
-    transition: all .5s ease-in-out;
+    transition: border .5s ease-in-out;
 
 
     @media screen and (max-width: variables.$tablet) {
@@ -19,7 +20,7 @@
     }
 
     &:hover {
-        border: 2px solid variables.$text-second-color;
+        border: 2px solid var(--text-second-color);
     }
 
     &-wrapper {
@@ -48,33 +49,38 @@
         &-dev {
             margin-bottom: 1rem;
             span {
-                color: variables.$text-second-color;
+                color: var(--text-second-color);
             }
         }
 
         &-rating {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            @include mixins.display-between(row, center);
             margin-top: .8rem;
+            
+            #heart {
+                transition: all .6s;
+                &:hover {
+                    color: var(--favorite-color);
+                }
+            }
         }
 
         &-link {
             padding: .3rem .5rem;
             
-            background-color: variables.$bg-second-color;
-            color: variables.$text-primary-color;
+            background-color: var(--bg-second-color);
+            color: var(--text-primary-color);
             border-radius: 5px;
-            transition: all .7s;
+            transition: background-color .7s;
 
             &:hover {
-                background-color: variables.$text-second-color;
+                background-color: var(--text-second-color);
             }
         }
 
         hr {
             margin-block: 1.5rem 1rem;
-            border: 1px solid variables.$bg-second-color;
+            border: 1px solid var(--bg-second-color);
         }
     }
 }

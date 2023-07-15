@@ -2,7 +2,7 @@
 @use 'styles/mixins';
 
 header {
-    background-color: variables.$bg-second-color;
+    background-color: var(--bg-second-color);
 
     .container {
         @include mixins.display-between(row, center);
@@ -17,7 +17,7 @@ header {
             font-style: italic;
 
             span {
-                color: variables.$text-second-color;
+                color: var(--text-second-color);
             }
 
             img {

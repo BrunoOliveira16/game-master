@@ -8,7 +8,7 @@
         height: 120px;
         margin: 0 auto;
         border: 1rem solid transparent;
-        border-top: 1rem solid variables.$text-second-color;
+        border-top: 1rem solid var(--text-second-color);
         border-radius: 50%;
         animation: spin 2s linear infinite;
     }

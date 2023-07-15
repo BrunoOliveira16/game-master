@@ -4,7 +4,7 @@
 .rating {
     width: 100%;
     padding: 0 1rem 1rem;
-    background-color: variables.$bg-second-color;
+    background-color: var(--bg-second-color);
 
     @media screen and (max-width: variables.$mobile) {
         padding: 0 .8rem .8rem;
@@ -16,12 +16,12 @@
         padding: .5rem;
         gap: .5rem;
         font-size: variables.$medium-font-size;
-        border: 1px solid variables.$bg-second-color;
+        border: 1px solid var(--bg-second-color);
         transition: all ease .6s;
 
         &:hover {
-            border: 1px solid variables.$text-second-color;
-            color: variables.$text-second-color;
+            border: 1px solid var(--text-second-color);
+            color: var(--text-second-color);
         }
 
         @media screen and (max-width: variables.$mobile) {

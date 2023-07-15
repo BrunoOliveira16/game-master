@@ -52,6 +52,7 @@ const Card = ({ title, thumbnailUrl, item, developer, profileUrl }) => {
           <hr />
           <div className='card-content-rating'>
             <BsFillHeartFill
+              id='heart'
               onClick={handleFavoritClick}
               className={isFavorite ? 'isFavorite' : ''}
             />

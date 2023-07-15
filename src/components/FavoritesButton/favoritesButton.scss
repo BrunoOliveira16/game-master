@@ -5,7 +5,7 @@
     &-list {
         width: 100%;
         padding: 1rem 1rem 0;
-        background-color: variables.$bg-second-color;
+        background-color: var(--bg-second-color);
 
         @media screen and (max-width: variables.$mobile) {
             padding: .8rem .8rem 0;
@@ -14,12 +14,12 @@
         &-item {
             padding: .5rem;
             font-size: variables.$medium-font-size;
-            border: 1px solid variables.$bg-second-color;
-            transition: all ease .6s;
+            border: 1px solid var(--bg-second-color);
+            transition: border ease .6s;
         
             &:hover {
-                border: 1px solid variables.$text-second-color;
-                color: variables.$text-second-color;
+                border: 1px solid var(--text-second-color);
+                color: var(--text-second-color);
             }
 
             @media screen and (max-width: variables.$mobile) {

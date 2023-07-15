@@ -10,6 +10,8 @@ import { AuthContextProvider } from './context/AuthContext';
 
 // Components
 import Header from './components/Header/Header';
+import ButtonTheme from './components/ButtonTheme/ButtonTheme';
+import ScrollTopButton from './components/ScrollTopButton/ScrollTopButton';
 
 // Pages
 import Home from './pages/Home/Home';
@@ -37,6 +39,8 @@ function App() {
       <AppProvider>
         <BrowserRouter>
           <Header/>
+          <ButtonTheme />
+          <ScrollTopButton />
           <Routes>
             <Route
               path='/' 

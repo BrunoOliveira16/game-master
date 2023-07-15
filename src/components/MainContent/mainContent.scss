@@ -3,7 +3,7 @@
 
 .main {
     @include mixins.display-between(row, start);
-    padding-inline: 1rem;
+    padding: 0 1rem 2rem;
 
     @media screen and (max-width: variables.$tablet) {
         flex-direction: column-reverse;
@@ -19,6 +19,9 @@
         }
 
         &-user {
+            border-radius: 5px;
+            overflow: hidden;
+
             @media screen and (max-width: variables.$tablet) {
                 display: flex;
                 align-items: center;

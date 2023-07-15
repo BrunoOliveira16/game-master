@@ -1,0 +1,16 @@
+@use 'styles/variables';
+
+.theme-toggle {
+    padding: .5rem;
+    position: fixed;
+    top: 50%;
+    right: 0;
+    background-color: var(--text-second-color);
+    z-index: 5;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    font-size: variables.$large-font-size;
+
+    display: flex;
+    justify-content: center;
+}

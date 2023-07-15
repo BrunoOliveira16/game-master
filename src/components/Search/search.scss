@@ -5,7 +5,8 @@
     width: 20%;
     @include mixins.display-between(row, center);
     padding: .5rem;
-    background-color: variables.$bg-primary-color;
+    background-color: var(--bg-primary-color);
+    border-radius: 5px;
 
     @media screen and (max-width: variables.$mobile-lg) {
         width: 100%;
@@ -17,7 +18,7 @@
     margin-right: 1rem;
     padding: 5px;
     font-size: variables.$normal-font-size;
-    color: variables.$text-primary-color;
+    color: var(--text-primary-color);
     background-color: transparent;
-    border: variables.$bg-primary-color;
+    border: var(--bg-primary-color);
 }

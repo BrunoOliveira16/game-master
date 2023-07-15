@@ -4,12 +4,12 @@
 .modal {
     position: fixed;
     inset: 0;
-    background-color: variables.$bg-overlay-color;
+    background-color: var(--bg-overlay-color);
     @include mixins.display-center;
 
     &-container {
-        background-color: variables.$bg-second-color;
-        color: variables.$text-primary-color;
+        background-color: var(--bg-second-color);
+        color: var(--text-primary-color);
         padding: 2.5rem 2rem;
         border-radius: .7rem;
         position: relative;
@@ -22,7 +22,7 @@
             transition: all .6s;
 
             &:hover {
-                color: variables.$text-second-color;
+                color: var(--text-second-color);
             }
         }
 

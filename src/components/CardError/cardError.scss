@@ -8,7 +8,7 @@
         max-width: 400px;
         width: 100%;
         margin-block: 1.5rem;
-        color: variables.$text-primary-color;
+        color: var(--text-primary-color);
     }
 
     p {
