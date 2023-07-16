@@ -13,17 +13,19 @@ import './dashboard.scss';
 const Dashboard = () => {
   const { auth } = useAuthentication();
   const user = auth.currentUser;
-  const { favorites, ratings } = useAppContext();
+  const { search, favorites, ratings } = useAppContext();
   const [ratingFilter, setRatingFilter] = useState(null);
   const [sortOrder, setSortOrder] = useState('desc');
+
 
   //Cria um array com os jogos favoritos e avaliados
   const allGames = [...favorites, ...ratings];
   //Remove os jogos duplicados do array
   const uniqueGames = allGames.filter((game, index) => allGames.findIndex((itemGame) => itemGame.id === game.id) === index);
-  //Filtra os jogos por avaliação
+  //Filtra os jogos por avaliação e pela barra de busca
   const filteredGames = uniqueGames.filter((item) => (
-    !ratingFilter || ratings.find((rating) => rating.id === item.id)?.rating === ratingFilter
+    (!search || item.title.toLowerCase().includes(search.toLowerCase())) &&
+    (!ratingFilter || ratings.find((rating) => rating.id === item.id)?.rating === ratingFilter)
   ))
 
   return (
