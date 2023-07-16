@@ -1,20 +1,22 @@
 # 🏆 Games Master Website
 ![GitHub repo size](https://img.shields.io/github/repo-size/BrunoOliveira16/game-master?style=for-the-badge)
 ![Languages](https://img.shields.io/github/languages/count/BrunoOliveira16/game-master?style=for-the-badge)
-![Status projeto](https://img.shields.io/badge/STATUS-EM%20DESENVOLVIMENTO-blue?style=for-the-badge)
+![Status projeto](https://img.shields.io/badge/STATUS-CONCLUIDO-GREEN?style=for-the-badge)
 
 <img src="./public/screenshot-01.jpg">
 
+<img src="./public/screenshot-02.jpg">
+
 <br>
 
-## 📎 Sumario
+## 📎 Sumario 
 
 - 📌 Resumo do Projeto
 - 🛠️ Como executar o projeto
-- ⭐ Features
-- 📂 Temas abordados
+- ⭐ Features ![Status](https://img.shields.io/badge/NEWS-GREEN?style=flat)
+- 📂 Temas abordados ![Status](https://img.shields.io/badge/NEWS-GREEN?style=flat)
 - 🚀 Exemplos de código
-- ✔️ Tecnologias Utilizadas
+- ✔️ Tecnologias Utilizadas ![Status](https://img.shields.io/badge/NEWS-GREEN?style=flat)
 - 🙋🏻‍♂️ Autor
 - 💻 Licença
 
@@ -48,6 +50,28 @@ Para executar este projeto localmente em sua máquina, siga estas etapas:
 - Hooks personalizados: o aplicativo usa hooks personalizados para separar a lógica de busca de dados e tornar o código mais modular e reutilizável.
 - Estilização com SASS: o aplicativo usa SASS para estilização, aproveitando recursos como variáveis e mixins para manter o código limpo e modular.
 
+### Novidades
+
+- Os usuários podem agora criar uma conta com email e senha e logar no site, está autenticação é feita através do firebase.
+
+- Os usuários agora podem selecionar seu jogos favoritos e avaliar com uma nota de 1 a 4, todo esse armazenamento é feito pelo firestore.
+
+- Os usuários agora podem filtrar seus jogos por favoritos, ordem de avaliação ou valor absoluto de avaliação.
+
+- Os usuários agora podem visualizar uma página personalizada sua, onde poderam ver apenas seus jogos favoritos e avaliados.
+
+- O site agora possui uma página de erro 404, para quando digitar o caminho errado, informando que aquele local não existe.
+
+- O site agora oferece suporte para seleção de temas claro e escuro (por padrão vem no tema escuro)
+
+- O site agora oferece um botão de sroll para o topo da página a medida que os usuários vão navegando pelo site, melhorando a experência do usuário.
+
+- O site agora oferece em modo mobile um menu hamburguer para melhor experiência e foi modificada a barra de seleção de genêros para melhor visualização dos usuários.
+
+- O site agora possui algumas animações nos cards a medida que os mesmos vão se posicionando ou sendo filtrados, oferecendo uma experiência melhor para o usuário.
+
+- Os cards de jogos agora contam com informações adicionais como o nome da desenvolvedora e um botão para navegar para a página do jogo com informações mais detalhadas.
+
 <br>
 
 ## 📂 Temas abordados
@@ -60,6 +84,13 @@ Para executar este projeto localmente em sua máquina, siga estas etapas:
 - Axios: O projeto usa a biblioteca Axios para fazer requisições HTTP e buscar dados de uma API externa. A função fetchData usa o Axios para enviar uma requisição GET para a API e retornar os dados recebidos. A função também inclui tratamento de erros para lidar com possíveis falhas na requisição.
 
 - SASS: O projeto usa SASS para estilização, aproveitando recursos como variáveis e mixins para manter o código limpo e modular.
+
+### Novidades
+- Firebase: Ele é uma plataforma de desenvolvimento de aplicativos móveis e web do Google que fornece uma variedade de ferramentas e serviços para ajudar os desenvolvedores a criar, desenvolver e expandir seus aplicativos. Ele inclui recursos como autenticação, banco de dados, armazenamento, hospedagem e análises.
+
+- Firebase Authentication: É um serviço do Google que permite autenticar usuários em seu aplicativo usando vários provedores de identidade, como e-mail/senha, Google, Facebook, entre outros. É fácil de usar e integrar em seu aplicativo.
+
+- Cloud Firestore: É um banco de dados NoSQL flexível e escalonável para desenvolvimento de aplicativos móveis, web e de servidor do Firebase e do Google Cloud. Ele permite armazenar, sincronizar e consultar facilmente dados em escala global.
 
 <br>
 
@@ -148,6 +179,7 @@ O projeto usa mixins SASS para reutilizar blocos de código em vários lugares. 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![SASS](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)
 ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-F29D0C?style=for-the-badge&logo=firebase&logoColor=white)
 
 <br>
 
