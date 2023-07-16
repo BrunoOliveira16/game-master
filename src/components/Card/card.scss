@@ -82,5 +82,12 @@
             margin-block: 1.5rem 1rem;
             border: 1px solid var(--bg-second-color);
         }
+
+        &-error {
+            font-size: variables.$min-font-size;
+            text-align: center;
+            margin-block: .5rem;
+            color: var(--favorite-color);
+        }
     }
 }

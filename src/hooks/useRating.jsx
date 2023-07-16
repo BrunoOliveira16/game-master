@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { db } from '../firebase/config';
 import { addDoc, collection, query, where, getDocs, updateDoc, deleteDoc } from 'firebase/firestore';
 import { useAuthentication } from 'hooks/useAuthentication';
@@ -7,7 +8,7 @@ const useRating = () => {
     const { auth } = useAuthentication();
     const { setRatings } = useAppContext();
     const user = auth.currentUser;
-    
+    const [ error, setError ] = useState(null);
 
     const handleAddRatings = async (item) => {
         if (!user) return;
@@ -27,8 +28,10 @@ const useRating = () => {
               ...prevRat.filter((rating) => rating.id !== item.id),
               item,
             ]);
+            return true;
           } catch(error) {
-            console.log(error);
+            setError('Ocorreu um erro ao adicionar a avaliação. Por favor, tente novamente.');
+            return false;
         }
     };
 
@@ -45,14 +48,17 @@ const useRating = () => {
             setRatings((prevRat) =>
               prevRat.filter((rating) => rating.id !== item.id)
             );
+            return true;
           } catch (error) {
-            console.log(error);
+            setError('Ocorreu um erro ao remover a avaliação. Por favor, tente novamente.');
+            return false;
         }
     }
 
     return { 
         handleAddRatings, 
-        handleRemoveRatings 
+        handleRemoveRatings,
+        error 
     };
 };
 

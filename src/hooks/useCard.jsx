@@ -7,6 +7,7 @@ import useRating from 'hooks/useRating';
 const useCard = (item) => {
   const { user } = useContext(AuthContext);
   const { favorites, setFavorites, ratings } = useAppContext();
+  const [ error, setError ] = useState(null);
 
   const isFavorited = favorites.some((favorite) => favorite.id === item.id);
   const [isFavorite, setIsFavorite] = useState(isFavorited);
@@ -17,8 +18,8 @@ const useCard = (item) => {
   const [showModal, setShowModal] = useState(false);
   const [textMessage, setTextMessage] = useState('');
 
-  const { handleAddFavorite, handleRemoveFavorite } = useFavorites(setFavorites);
-  const { handleAddRatings, handleRemoveRatings } = useRating(item);
+  const { handleAddFavorite, handleRemoveFavorite, error: favoriteError } = useFavorites(setFavorites);
+  const { handleAddRatings, handleRemoveRatings, error: ratingError } = useRating(item);
 
   // Limpa marcação de favoritos e avaliações quando o usuário não está logado
   useEffect(() => {
@@ -29,33 +30,50 @@ const useCard = (item) => {
   }, [user]);
 
   // Função para lidar com cliques em itens favoritos
-  const handleFavoritClick = () => {
+  const handleFavoritClick = async () => {
     if (!user) {
       setShowModal(true);
       setTextMessage('adicionar como favorito');
       return;
     }
-    setIsFavorite(!isFavorite);
+    
+    let success;
     if (isFavorite) {
-      handleRemoveFavorite(item);
+      success = await handleRemoveFavorite(item);
     } else {
-      handleAddFavorite(item);
+      success = await handleAddFavorite(item);
+    }
+
+    if (success) {
+      setIsFavorite((prevIsFavorite) => !prevIsFavorite);
     }
   };
+  // Verifica se há um erro de favorito e define o estado de erro
+  useEffect(() => {
+    if (favoriteError) {
+      setError(favoriteError);
+    }
+  }, [favoriteError]);
 
   // Função para lidar com cliques em itens avaliados
-  const handleRatingClick = (newRating) => {
-    if (!user) {
+  const handleRatingClick = async (newRating) => {
+    if(!user) {
       setShowModal(true);
       setTextMessage('avaliar o jogo');
       return;
     }
-    if (isRating === newRating) {
-      handleRemoveRatings(item);
+
+    let success;
+    if(isRating === newRating) {
+      success = await handleRemoveRatings(item);
       setIsRating(0);
     } else {
-      handleAddRatings({ ...item, rating: newRating });
+      success = await handleAddRatings({ ...item, rating: newRating });
       setIsRating(newRating);
+    }
+
+    if(!success && ratingError) {
+      setError(ratingError);
     }
   };
 
@@ -68,6 +86,7 @@ const useCard = (item) => {
     setTextMessage,
     handleFavoritClick,
     handleRatingClick,
+    error,
   };
 };
 

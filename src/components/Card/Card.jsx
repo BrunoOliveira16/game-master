@@ -14,6 +14,7 @@ const Card = ({ title, thumbnailUrl, item, developer, profileUrl }) => {
     setShowModal,
     textMessage,
     handleFavoritClick,
+    error,
     handleRatingClick,
   } = useCard(item);
 
@@ -71,6 +72,7 @@ const Card = ({ title, thumbnailUrl, item, developer, profileUrl }) => {
               ))}
             </div>
           </div>
+          {error && <p className='card-content-error'>{error}</p>}
         </div>
       </motion.div>
     </>
